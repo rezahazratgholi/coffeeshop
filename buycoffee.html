@@ -6,6 +6,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+
     <title>coffee shop</title>
     <style>
         .sum{
@@ -81,16 +83,30 @@
             overflow-y:scroll ;
 
         }
+        .myShopin{
+            transition: 0.5s;
+            /*margin-bottom: 20px;*/
+            position: relative;
+        }
+        .myShopin:hover{
+            background-color: whitesmoke;
+            color: black;
+            padding: 10px;
+
+        }
+
 
     .myShop .gheymat2{
-        text-align: right;
-        width: 60px;
+        /*text-align: right;*/
+        width: 70px;
+        margin-top: 20px;
         position: absolute;
         right: 10px;
         background-color: whitesmoke;
         color: black;
         bottom: 10px;
-        margin-top: 10px;
+        /*margin-top: 10px;*/
+        margin-left: 90px;
     }
 
     </style>
@@ -136,7 +152,7 @@
             document.querySelector('.kharid').addEventListener('click',function () {
                 let moz3 = "";
                 moz3 = document.querySelector(".myShop")
-                moz3.innerHTML += moz2
+                moz3.innerHTML += "<div class='myShopin'>"+moz2+"</div><i class='fa fa-close' style=\"font-size:24px color:red \"></i>";
                 total_moz += moz
                 document.querySelector(".gheymat2").innerText = total_moz + "T"
             })
@@ -145,6 +161,9 @@
     </script>
 </head>
 <body>
+<form action="">
+    <input type="text" name="adasd">
+    <button>submit</button></form>
 <div class="parentdetail" >
 <div class="details">  </div>
 <button class="kharid">add to card</button>
