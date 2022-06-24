@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>coffee shop</title>
+    <style>
+        .sum{
+            background-color: deeppink;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 50%;
+            cursor:pointer;
+            margin-left: 3px;
+        }
+        .sumkol{
+               background-color: deeppink;
+               color: white;
+               padding: 2px 30px;
+               border-radius: 5%;
+               cursor:pointer;
+               margin-left: 3px;
+           }
+        img{
+            width: 200px;
+            height: 200px;
+        }
+        .itemSum{
+            width: 20px;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+        .parentdetail{
+            width: 400px;
+            right: 20px;
+            min-height: 50px;
+            position: fixed;
+            background-color: lightgreen;
+            opacity: 0.7;
+        }
+        .details div{
+            text-align: center;
+            padding: 20px;
+
+        }
+        .details div:nth-child(1){
+            margin-top: 20px;
+        }
+        .kharid{
+            margin:10px 70px ;
+            background-color: green;
+            color: white;
+            border: black solid 2px;
+            padding: 5px;
+
+
+        }
+        .myShop{
+            width: 400px;
+            right: 20px;
+            min-height: 50px;
+            position: fixed;
+            bottom: 20px;
+            opacity: 0.7;
+
+            background-color: fuchsia;
+            color: white;
+            border: white solid 2px;
+            max-height: 100px;
+            overflow-y:scroll ;
+
+        }
+
+    .myShop .gheymat2{
+        text-align: right;
+        width: 60px;
+        position: absolute;
+        right: 10px;
+        background-color: whitesmoke;
+        color: black;
+        bottom: 10px;
+        margin-top: 10px;
+    }
+
+    </style>
+    <script>
+        window.addEventListener("DOMContentLoaded",function (){
+            let plus = document.querySelectorAll(".sumKon")
+            for (let j=0 ;j< plus.length ; j++ ){
+
+                plus[j].addEventListener('click',function () {
+                    let value1 = document.querySelectorAll('.itemSum')[j].value;
+                    document.querySelectorAll('.itemSum')[j].value = parseInt(value1) + 1;
+
+
+                })
+            }
+                let minus = document.querySelectorAll(".mines")
+                for (let i=0 ;i< minus.length ; i++ ){
+                    document.querySelectorAll(".mines")[i].addEventListener('click',function () {
+                        let value = document.querySelectorAll('.itemSum')[i].value;
+                        document.querySelectorAll('.itemSum')[i].value = value - 1;
+                        if (document.querySelectorAll('.itemSum')[i].value < 0){
+                            document.querySelectorAll('.itemSum')[i].value = 0
+                        }
+
+                    })
+                }
+                let total = document.querySelectorAll('.total')
+            let moz =0;
+            let total_moz = 0
+            let moz2 ="";
+            for (let w=0 ;w< total.length ; w++){
+                total[w].addEventListener("click",function (){
+                    let kharid = document.querySelector(".details");
+                    kharid.innerHTML = "<div>"+document.querySelectorAll('.itemDrink')[w].getAttribute('data-title')+"</div>";
+                    kharid.innerHTML += "<div>"+document.querySelectorAll('.itemDrink')[w].getAttribute('data-category')+"</div>";
+                    kharid.innerHTML += "<div>"+document.querySelectorAll('.itemDrink')[w].getAttribute('data-price')+"T </div>";
+                    kharid.innerHTML += "<div class='gheymat'>"+parseInt(document.querySelectorAll('.itemDrink')[w].getAttribute('data-price'))*parseInt(document.querySelectorAll('.itemSum')[w].value)+"T </div>";
+                    moz = parseInt(document.querySelectorAll('.itemDrink')[w].getAttribute('data-price'))*parseInt(document.querySelectorAll('.itemSum')[w].value);
+                    moz2 = "<div> item name "+document.querySelectorAll('.itemDrink')[w].getAttribute('data-title')+"--------"+moz +"T </div>";
+                })
+            }
+
+            document.querySelector('.kharid').addEventListener('click',function () {
+                let moz3 = "";
+                moz3 = document.querySelector(".myShop")
+                moz3.innerHTML += moz2
+                total_moz += moz
+                document.querySelector(".gheymat2").innerText = total_moz + "T"
+            })
+        })
+
+    </script>
+</head>
+<body>
+<div class="parentdetail" >
+<div class="details">  </div>
+<button class="kharid">add to card</button>
+</div>
+<div class="myShop"><div class="gheymat2">price</div>  </div>
+<!--        item1-->
+    <div class="itemDrink" data-price="50" data-title="esppresso" data-category="coffeeHot" >
+        <figure>
+        <img src="photos/espresso.jpg" alt="">
+            <figcaption>
+                drink esspresso get fresh
+                <br>
+                <span> 50T </span>
+            </figcaption>
+            <button class="sum mines" onclick="">-</button>
+            <input type="number" class="itemSum" value="1"><button class="sum sumKon">+</button><button class ="sumkol total"> detail of shop</button>
+        </figure>
+    </div>
+<!--item2-->
+    <div class="itemDrink" data-price="70" data-title="latte" data-category="coffeeHot">
+        <figure>
+            <img src="photos/latte.jpg" alt="">
+            <figcaption>
+                drink latte get fresh
+                <br>
+                <span> 70T </span>
+            </figcaption>
+            <button class="sum mines">-</button><input type="number" class="itemSum" value="1"><button class="sum sumKon">+</button><button class ="sumkol total"> detail of shop</button>
+        </figure>
+    </div>
+<!--item3-->
+    <div class="itemDrink" data-price="80" data-title="mocha" data-category="coffeeHot" >
+        <figure>
+            <img src="photos/mocha.jpg" alt="">
+            <figcaption>
+                drink mocha get fresh
+                <br>
+                <br>
+                <span> 80T </span>
+            </figcaption>
+            <button class="sum mines">-</button><input type="number" class="itemSum" value="1"><button class="sum sumKon">+</button><button class ="sumkol total"> detail of shop</button>
+        </figure>
+    </div>
+<!--item4-->
+    <div class="itemDrink" data-price="60" data-title="americano" data-category="coffeeHot" >
+        <figure>
+            <img src="photos/americano.jpg" alt="">
+            <figcaption>
+                drink americano get fresh
+                <br>
+                <span> 60T </span>
+            </figcaption>
+            <button class="sum mines">-</button><input type="number" class="itemSum" value="1"><button class="sum sumKon">+</button><button class ="sumkol total"> detail of shop</button>
+        </figure>
+    </div>
+<!--item5 -->
+<div class="itemDrink" data-price="60" data-title="icecoffee"  data-category="coffeeCold">
+    <figure>
+        <img src="photos/icecoffee.jpg" alt="">
+        <figcaption>
+            drink icecoffee get fresh
+            <br>
+            <span> 60T </span>
+        </figcaption>
+        <button class="sum mines">-</button><input type="number" class="itemSum" value="1"><button class="sum sumKon">+</button><button class ="sumkol total"> detail of shop</button>
+    </figure>
+</div>
+
+<!--item6-->
+<div class="itemDrink" data-price="75" data-title="icelatte" data-category="coffeeCold">
+    <figure>
+        <img src="photos/icelatte.jpg" alt="">
+        <figcaption>
+            drink icelatte get fresh
+            <br>
+            <span> 75T </span>
+        </figcaption>
+        <button class="sum mines">-</button><input type="number" class="itemSum" value="1"><button class="sum sumKon">+</button><button class ="sumkol total"> detail of shop</button>
+    </figure>
+</div>
+
+<!--item7 -->
+<div class="itemDrink" data-price="85" data-title="icemocha" data-category="coffeeCold">
+    <figure>
+        <img src="photos/icemocha.jpg" alt="">
+        <figcaption>
+            drink ice mocha get fresh
+            <br>
+            <span> 85T </span>
+        </figcaption>
+        <button class="sum mines">-</button><input type="number" class="itemSum" value="1"><button class="sum sumKon">+</button><button class ="sumkol total"> detail of shop</button>
+    </figure>
+</div>
+
+<!--item8-->
+<div class="itemDrink" data-price="90" data-title="shakevanilla" data-category="shake" >
+    <figure>
+        <img src="photos/shakevanilla.jpg" alt="">
+        <figcaption>
+            drink shake vanilla get fresh
+            <br>
+            <span> 90T </span>
+        </figcaption>
+        <button class="sum mines">-</button><input type="number" class="itemSum" value="1"><button class="sum sumKon">+</button><button class ="sumkol total"> detail of shop</button>
+    </figure>
+</div>
+
+<!--item9 -->
+<div class="itemDrink" data-price="100" data-title="shakenuttla" data-category="shake" >
+    <figure>
+        <img src="photos/shakenuttla.jpg" alt="">
+        <figcaption>
+            drink shake nuttla get fresh
+            <br>
+            <span> 100T </span>
+        </figcaption>
+        <button class="sum mines">-</button><input type="number" class="itemSum" value="1"><button class="sum sumKon">+</button><button class ="sumkol total"> detail of shop</button>
+    </figure>
+</div>
+</body>
+</html>
